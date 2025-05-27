@@ -52,14 +52,16 @@ namespace MvcMovie_IDGS904.Controllers
             var movieGenreVM = new MovieGenreViewModel
             //buscamos los generos de las peliculas y los convertimos a una lista
             {
-                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()), 
-                Movies = await movies.ToListAsync(), //convertimos la consulta a una lista
-                SearchString = searchString,
-                MovieGenre = movieGenre
+                Genres = new SelectList(await
+                genreQuery.Distinct().ToListAsync()), 
+                Movies = await movies.ToListAsync() //convertimos la consulta a una lista
+                
             };
 
-            // return View(await _context.Movie.ToListAsync()); return 
-            return View(await movies.ToListAsync());
+            // return default  return View(await _context.Movie.ToListAsync()); return 
+            // return que hizo el profe  return View(await movies.ToListAsync());
+
+            return View(movieGenreVM); //regresamos la vista con el modelo de vista
         }
 
         // GET: Movies/Details/5
@@ -91,7 +93,7 @@ namespace MvcMovie_IDGS904.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre,Price, Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +125,7 @@ namespace MvcMovie_IDGS904.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre,Price, Rating")] Movie movie)
         {
             if (id != movie.ID)
             {

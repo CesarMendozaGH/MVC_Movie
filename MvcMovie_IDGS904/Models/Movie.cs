@@ -17,6 +17,8 @@ namespace MvcMovie_IDGS904.Models
         [Column(TypeName ="decimal(18,2)")] //para especificar el tipo de dato en la base de datos
         public decimal Price { get; set; }
         
+        public string? Rating { get; set; }
+
         //estas son llamadas clases POCO 
     }
 }
